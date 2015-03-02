@@ -3,7 +3,9 @@
 	"autoload": {
 		"psr-0": {"": "src/"}
 	},
-	"post-install-cmd": [
-		"DrupalContainer\\Composer::postInstall"
-	]
+	"scripts": {
+		"post-install-cmd": [
+			"DrupalContainer\\Composer::postInstall"
+		]
+	}
 }
