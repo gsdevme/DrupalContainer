@@ -30,10 +30,10 @@ class Application
         $this->container = new ContainerBuilder();
 
         $loader = new YamlFileLoader($this->container, new FileLocator([
-            $this->$drupal . '/config/',
-            $this->$drupal . '/../config/',
-            $this->$drupal . '/sites/all/config',
-            $this->$drupal . '/sites/default/config',
+            $this->drupal . '/config/',
+            $this->drupal . '/../config/',
+            $this->drupal . '/sites/all/config',
+            $this->drupal . '/sites/default/config',
         ]));
         $loader->load('services.yml');
 
