@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Register the autoloader and DrupalContainer class.
+ *
+ * Implements hook_boot().
+ */
+function drupal_container_boot() {
+    global $conf;
+
+    require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+
+    $application = new DrupalContainer\Application(DRUPAL_ROOT, $conf);
+    $application->run();
+}

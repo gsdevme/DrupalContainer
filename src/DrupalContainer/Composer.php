@@ -9,11 +9,17 @@ class Composer
     const MODULE_NAME = 'drupal_container';
     const MODULE_PATH = '/sites/all/';
 
+    /**
+     * @param ComposerEvent $event
+     */
     public static function postInstall(ComposerEvent $event)
     {
         return self::installDrupalModule($event);
     }
 
+    /**
+     * @param ComposerEvent $event
+     */
     public static function postUpdate(ComposerEvent $event)
     {
         return self::installDrupalModule($event);
