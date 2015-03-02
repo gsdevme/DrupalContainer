@@ -6,6 +6,9 @@
 	"scripts": {
 		"post-install-cmd": [
 			"DrupalContainer\\Composer::postInstall"
+		],
+		"post-package-install": [
+			"DrupalContainer\\Composer::postInstall"
 		]
 	}
 }
