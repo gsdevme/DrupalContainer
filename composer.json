@@ -1,0 +1,6 @@
+{
+	"name": "gsdevme/drupalcontainer",
+	"autoload": {
+		"psr-0": {"": "src/"}
+	}
+}
