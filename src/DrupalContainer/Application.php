@@ -18,7 +18,7 @@ class Application
      */
     public function __construct($drupal, &$conf)
     {
-        $this->drupal       = $drupal;
+        $this->drupal        = $drupal;
         $this->configuration = $conf;
     }
 
@@ -32,6 +32,7 @@ class Application
         $loader = new YamlFileLoader($this->container, new FileLocator([
             $this->drupal . '/config/',
             $this->drupal . '/../config/',
+            $this->drupal . '/sites/config',
             $this->drupal . '/sites/all/config',
             $this->drupal . '/sites/default/config',
         ]));
