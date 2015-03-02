@@ -1,4 +1,4 @@
-# DrupalContainerAware
+# DrupalContainer
 
 ## Authors
 Brian Ward - https://github.com/briward/
