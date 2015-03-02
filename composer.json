@@ -1,13 +1,21 @@
 {
 	"name": "gsdevme/drupalcontainer",
+	"author": [
+		{
+			"name": "Brian Ward"
+		},
+		{
+			"name": "Gavin Staniforth"
+		}
+	],
+	"require": {
+		"symfony/console": "2.6"
+	},
 	"autoload": {
 		"psr-0": {"": "src/"}
 	},
 	"scripts": {
 		"post-install-cmd": [
-			"DrupalContainer\\Composer::postInstall"
-		],
-		"post-package-install": [
 			"DrupalContainer\\Composer::postInstall"
 		]
 	}

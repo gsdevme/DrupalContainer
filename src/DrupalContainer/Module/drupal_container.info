@@ -1,0 +1,4 @@
+name = DrupalContainer
+description = Provides the Symfony container to D7 projects
+core = 7.x
+package = Drupal Container
