@@ -11,12 +11,12 @@ class Composer
 
     public static function postInstall(ComposerEvent $event)
     {
-        return self::installDrupalModule();
+        return self::installDrupalModule($event);
     }
 
     public static function postUpdate(ComposerEvent $event)
     {
-        return self::installDrupalModule();
+        return self::installDrupalModule($event);
     }
 
     /**
