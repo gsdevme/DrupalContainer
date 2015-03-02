@@ -8,11 +8,11 @@
 function drupal_container_boot() {
     global $conf;
 
-    if(file_exists('/vendor/autoload.php')){
+    if(file_exists(DRUPAL_ROOT . '/vendor/autoload.php')){
         require_once DRUPAL_ROOT . '/vendor/autoload.php';
     }
 
-    if(file_exists('/../vendor/autoload.php')){
+    if(file_exists(DRUPAL_ROOT . '/../vendor/autoload.php')){
         require_once DRUPAL_ROOT . '/../vendor/autoload.php';
     }
 
