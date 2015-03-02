@@ -36,7 +36,9 @@ class Application
             $this->drupal . '/sites/all/config',
             $this->drupal . '/sites/default/config',
         ]));
+
         $loader->load('services.yml');
+        $loader->load('parameters.yml');
 
         $this->container->compile();
 
