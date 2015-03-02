@@ -18,7 +18,7 @@ class Application
      */
     public function __construct($drupal, &$conf)
     {
-        $this->$drupal       = $drupal;
+        $this->drupal       = $drupal;
         $this->configuration = $conf;
     }
 
