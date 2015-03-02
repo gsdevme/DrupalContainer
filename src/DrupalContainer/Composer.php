@@ -31,32 +31,37 @@ class Composer
      */
     private static function installDrupalModule(ComposerEvent $event)
     {
-        do {
-            self::askInstallQuestion();
-        } while (!$drupalModulePath = self::readAndValidateResponse());
+        if(!file_exists(realpath(__DIR__ ) . '/composer.lock')){
+            do {
+                self::askInstallQuestion();
+            } while (!$drupalModulePath = self::readAndValidateResponse());
+
+            if (!is_dir($drupalModulePath . self::MODULE_PATH)) {
+                throw new \Exception($drupalModulePath . self::MODULE_PATH . ' does not exist.');
+            }
+
+            $drupalModulePath = sprintf('%s%s/%s/',
+                $drupalModulePath,
+                self::MODULE_PATH,
+                'modules');
+
+            if (!is_dir($drupalModulePath)) {
+                mkdir($drupalModulePath, 0775, true);
+            }
+
+            $drupalModulePath .= self::MODULE_NAME;
+        }else{
+            $drupalModulePath = include realpath(__DIR__ ) . '/composer.lock';
+        }
 
         $modulePath = realpath(__DIR__) . '/Module';
 
-        if (!is_dir($drupalModulePath . self::MODULE_PATH)) {
-            throw new \Exception($drupalModulePath . self::MODULE_PATH . ' does not exist.');
-        }
-
-        $drupalModulePath = sprintf('%s%s/%s/',
-            $drupalModulePath,
-            self::MODULE_PATH,
-            'modules');
-
-        if (!is_dir($drupalModulePath)) {
-            mkdir($drupalModulePath, 0775, true);
-        }
-
-        $drupalModulePath .= self::MODULE_NAME;
-
         if (!file_exists($drupalModulePath)) {
             symlink($modulePath, $drupalModulePath);
+            echo 'Installed to: ' . $drupalModulePath . PHP_EOL;
         }
 
-        echo 'Installed to: ' . $drupalModulePath . PHP_EOL;
+        file_put_contents(realpath(__DIR__ ) . '/composer.lock', $drupalModulePath);
     }
 
     private static function readAndValidateResponse()
