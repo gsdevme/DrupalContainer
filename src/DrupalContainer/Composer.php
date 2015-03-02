@@ -37,7 +37,9 @@ FILE;
      */
     private static function installDrupalModule(ComposerEvent $event)
     {
-        if (!file_exists(realpath(__DIR__) . '/composer.lock')) {
+        $drupalContainerInstallLock = self::getCurrentWorkingDirectory() . 'drupalcontainer.lock';
+
+        if (!file_exists($drupalContainerInstallLock)) {
             do {
                 self::askInstallQuestion();
             } while (!$drupalModulePath = self::readAndValidateResponse());
@@ -57,7 +59,7 @@ FILE;
 
             $drupalModulePath .= self::MODULE_NAME;
         } else {
-            $drupalModulePath = include realpath(__DIR__) . '/composer.lock';
+            $drupalModulePath = include $drupalContainerInstallLock;
         }
 
         $modulePath = realpath(__DIR__) . '/Module';
@@ -67,7 +69,7 @@ FILE;
             echo 'Installed to: ' . $drupalModulePath . PHP_EOL;
         }
 
-        file_put_contents(realpath(__DIR__) . '/composer.lock', sprintf(self::LOCK_FILE, $drupalModulePath));
+        file_put_contents($drupalContainerInstallLock, sprintf(self::LOCK_FILE, $drupalModulePath));
     }
 
     private static function readAndValidateResponse()
