@@ -8,7 +8,13 @@
 function drupal_container_boot() {
     global $conf;
 
-    require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+    if(file_exists('/vendor/autoload.php')){
+        require_once DRUPAL_ROOT . '/vendor/autoload.php';
+    }
+
+    if(file_exists('/../vendor/autoload.php')){
+        require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+    }
 
     $application = new DrupalContainer\Application(DRUPAL_ROOT, $conf);
     $application->run();
