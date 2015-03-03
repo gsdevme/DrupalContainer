@@ -1,8 +1,10 @@
 # DrupalContainer
 
 ## Authors
+```
 Brian Ward - https://github.com/briward/
 Gavin Staniforth - https://github.com/gsdevme
+```
 
 ## Install
 ```
