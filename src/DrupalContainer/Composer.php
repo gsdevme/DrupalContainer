@@ -62,12 +62,12 @@ FILE;
                 mkdir($drupalModulePath, 0775, true);
             }
 
-            $drupalModulePath .= self::MODULE_NAME;
+            $drupalModulePath .= self::MODULE_NAME . '/';
         } else {
             $drupalModulePath = include $drupalContainerInstallLock;
         }
 
-        $modulePath = realpath(__DIR__) . '/Module';
+        $modulePath = realpath(__DIR__) . '/Module/';
 
         if (!is_dir($drupalModulePath)) {
             mkdir($drupalModulePath);
