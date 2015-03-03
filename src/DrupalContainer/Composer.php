@@ -6,6 +6,10 @@ use Composer\Script\Event as ComposerEvent;
 
 class Composer
 {
+    const DRUPAL_INFO_FILE    = 'drupal_container.info';
+    const DRUPAL_INSTALL_FILE = 'drupal_container.install';
+    const DRUPAL_MODULE_FILE  = 'drupal_container.module';
+
     const MODULE_NAME = 'drupal_container';
     const MODULE_PATH = '/sites/all/';
     const LOCK_FILE   = <<<FILE
@@ -33,6 +37,7 @@ FILE;
 
     /**
      * @param ComposerEvent $event
+     *
      * @throws \Exception
      */
     private static function installDrupalModule(ComposerEvent $event)
@@ -64,14 +69,29 @@ FILE;
 
         $modulePath = realpath(__DIR__) . '/Module';
 
-        if (!file_exists($drupalModulePath)) {
-            symlink($modulePath, $drupalModulePath);
-            echo 'Installed to: ' . $drupalModulePath . PHP_EOL;
+        if (!is_dir($drupalModulePath)) {
+            mkdir($drupalModulePath);
         }
+
+        self::copyDrupalModuleFiles($modulePath, $drupalModulePath);
 
         file_put_contents($drupalContainerInstallLock, sprintf(self::LOCK_FILE, $drupalModulePath));
     }
 
+    /**
+     * @param $modulePath
+     * @param $drupalModulePath
+     */
+    private static function copyDrupalModuleFiles($modulePath, $drupalModulePath)
+    {
+        copy($modulePath . self::DRUPAL_INFO_FILE, $drupalModulePath . self::DRUPAL_INFO_FILE);
+        copy($modulePath . self::DRUPAL_INSTALL_FILE, $drupalModulePath . self::DRUPAL_INSTALL_FILE);
+        copy($modulePath . self::DRUPAL_MODULE_FILE, $drupalModulePath . self::DRUPAL_MODULE_FILE);
+    }
+
+    /**
+     * @return bool|string
+     */
     private static function readAndValidateResponse()
     {
         $drupalModulePath = self::getCurrentWorkingDirectory() . trim(fgets(STDIN));
