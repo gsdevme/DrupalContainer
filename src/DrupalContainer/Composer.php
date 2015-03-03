@@ -65,7 +65,7 @@ FILE;
         $modulePath = realpath(__DIR__) . '/Module';
 
         if (!file_exists($drupalModulePath)) {
-            copy($modulePath, $drupalModulePath);
+            symlink($modulePath, $drupalModulePath);
             echo 'Installed to: ' . $drupalModulePath . PHP_EOL;
         }
 
