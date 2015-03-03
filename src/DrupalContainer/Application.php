@@ -40,10 +40,10 @@ class Application
         $loader->load('services.yml');
         $loader->load('parameters.yml');
 
-        $this->container->compile();
-
         $this->container->set('drupal.root', $this->drupal);
         $this->container->set('drupal.configuration', $this->configuration);
+
+        $this->container->compile();
 
         Registry::setContainer($this->container);
     }
