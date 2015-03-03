@@ -37,7 +37,7 @@ FILE;
      */
     private static function installDrupalModule(ComposerEvent $event)
     {
-        $drupalContainerInstallLock = self::getCurrentWorkingDirectory() . 'drupalcontainer.lock';
+        $drupalContainerInstallLock = self::getCurrentWorkingDirectory() . '.drupalcontainer.lock';
 
         if (!file_exists($drupalContainerInstallLock)) {
             do {
