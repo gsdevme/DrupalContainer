@@ -13,17 +13,11 @@
 		"symfony/dependency-injection": "~2.6",
 		"symfony/config": "~2.6",
 		"symfony/filesystem": "~2.6",
-		"symfony/Yaml": "~2.6"
+		"symfony/Yaml": "~2.6",
+		"symfony/console": "~2.6"
 	},
 	"autoload": {
 		"psr-0": {"": "src/"}
 	},
-	"scripts": {
-		"post-install-cmd": [
-			"DrupalContainer\\Composer::postInstall"
-		],
-		"post-update-cmd": [
-			"DrupalContainer\\Composer::postUpdate"
-		]
-	}
+	"bin": ["bin/drupal-container"]
 }

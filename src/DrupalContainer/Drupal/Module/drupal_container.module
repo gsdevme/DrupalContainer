@@ -18,4 +18,6 @@ function drupal_container_boot() {
 
     $application = new DrupalContainer\Application(DRUPAL_ROOT, $conf);
     $application->run();
+
+    \DrupalContainer\Registry::setContainer($application->getContainer());
 }

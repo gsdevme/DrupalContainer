@@ -44,7 +44,13 @@ class Application
         $this->container->set('drupal.configuration', $this->configuration);
 
         $this->container->compile();
+    }
 
-        Registry::setContainer($this->container);
+    /**
+     * @return \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    public function getContainer()
+    {
+        return $this->container;
     }
 }
