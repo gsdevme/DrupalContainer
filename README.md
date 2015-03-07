@@ -1,5 +1,5 @@
 # DrupalContainer
-Add the Symfony2 Container input Drupal 7 projects through use of a Drupal 7 module that is weighted to load before any other module.
+Add the Symfony2 Container into a Drupal 7 projects through use of a Drupal 7 module that is weighted to load before any other module.
 
 [![Build Status](https://scrutinizer-ci.com/g/gsdevme/DrupalContainer/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/gsdevme/DrupalContainer/build-status/develop)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gsdevme/DrupalContainer/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/gsdevme/DrupalContainer/?branch=develop)
