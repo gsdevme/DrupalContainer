@@ -11,7 +11,6 @@ class DrupalWebDirectoryResolver
 {
     const SEARCH_STRING = "define('DRUPAL_ROOT', getcwd());\n";
 
-    private $directories;
     private $flags;
 
     public function __construct()
@@ -22,16 +21,15 @@ class DrupalWebDirectoryResolver
     }
 
     /**
-     * @param string $directory
+     * @param $directory
+     * @return null|string
      */
     public function resolve($directory)
     {
         $directoryIterator         = new RecursiveDirectoryIterator($directory, $this->flags);
         $directoryCallbackIterator = new RecursiveCallbackFilterIterator($directoryIterator, [$this, 'recursiveDirectoryFilter']);
 
-        $files = $this->filterToDrupalInstallFolder(new RecursiveIteratorIterator($directoryCallbackIterator));
-
-        var_dump($files);
+        return $this->filterToDrupalInstallFolder(new RecursiveIteratorIterator($directoryCallbackIterator));
     }
 
     /**
