@@ -27,7 +27,10 @@ class DrupalWebDirectoryResolver
     public function resolve($directory)
     {
         $directoryIterator         = new RecursiveDirectoryIterator($directory, $this->flags);
-        $directoryCallbackIterator = new RecursiveCallbackFilterIterator($directoryIterator, [$this, 'recursiveDirectoryFilter']);
+        $directoryCallbackIterator = new RecursiveCallbackFilterIterator(
+            $directoryIterator,
+            [$this, 'recursiveDirectoryFilter']
+        );
 
         return $this->filterToDrupalInstallFolder(new RecursiveIteratorIterator($directoryCallbackIterator));
     }
