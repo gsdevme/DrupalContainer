@@ -12,6 +12,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Application extends SymfonyApplication
 {
+    const TITLE = <<<TITLE
+=================================================
+#################################################
+# Drupal Container Composer Installer           #
+#################################################
+=================================================
+
+TITLE;
+
+
     private $container;
 
     /**
@@ -29,6 +39,10 @@ class Application extends SymfonyApplication
      */
     public function doRun(InputInterface $input, OutputInterface $output)
     {
+        $this->add(new Commands\Install());
+
+        $output->writeln(sprintf('<comment>%s</comment>', self::TITLE));
+
         parent::doRun($input, $output);
     }
 
