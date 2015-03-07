@@ -5,7 +5,6 @@ namespace DrupalContainer\Composer\FileSystem;
 use RecursiveDirectoryIterator;
 use RecursiveCallbackFilterIterator;
 use RecursiveIteratorIterator;
-
 use SplFileInfo;
 
 class DrupalWebDirectoryResolver
@@ -23,7 +22,7 @@ class DrupalWebDirectoryResolver
     }
 
     /**
-     * @param $directory
+     * @param string $directory
      */
     public function resolve($directory)
     {
@@ -50,13 +49,13 @@ class DrupalWebDirectoryResolver
 
     /**
      * @param RecursiveIteratorIterator $iterator
-     * @return array|null
+     * @return string|null
      */
     private function filterToDrupalInstallFolder(RecursiveIteratorIterator $iterator)
     {
         /** @var SplFileInfo $fileInfo */
         foreach ($iterator as $fileInfo) {
-            $file  = $fileInfo->openFile('r');
+            $file = $fileInfo->openFile('r');
 
             while (!$file->eof()) {
                 if ($file->fgets() === self::SEARCH_STRING) {
