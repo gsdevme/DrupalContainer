@@ -5,7 +5,7 @@ namespace DrupalContainer\Composer\Question;
 interface ChoiceQuestionInterface extends QuestionInterface
 {
     /**
-     * @return array|null
+     * @return array
      */
     public function getChoiceArray();
 }
