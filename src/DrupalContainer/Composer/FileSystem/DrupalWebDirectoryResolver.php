@@ -2,8 +2,8 @@
 
 namespace DrupalContainer\Composer\FileSystem;
 
-use RecursiveDirectoryIterator;
 use RecursiveCallbackFilterIterator;
+use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
 

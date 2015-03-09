@@ -19,10 +19,10 @@ You can install both the Drupal 7 module and the container via Composer. You wil
 },
 "scripts": {
     "post-install-cmd": [
-        "DrupalContainer\\Composer::postInstall"
+        "bin/drupal-container composer:install"
     ],
     "post-update-cmd": [
-        "DrupalContainer\\Composer::postUpdate"
+        "bin/drupal-container composer:update"
     ]
 }
 ```
