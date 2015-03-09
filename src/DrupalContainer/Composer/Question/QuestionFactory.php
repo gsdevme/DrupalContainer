@@ -14,7 +14,11 @@ class QuestionFactory
     public function create(QuestionInterface $question)
     {
         if ($question instanceof ChoiceQuestionInterface) {
-            $consoleQuestion = new ChoiceQuestion($question->getQuestion(), $question->getChoiceArray(), $question->getDefaultAnswer());
+            $consoleQuestion = new ChoiceQuestion(
+                $question->getQuestion(),
+                $question->getChoiceArray(),
+                $question->getDefaultAnswer()
+            );
         } else {
             $consoleQuestion = new Question($question->getQuestion(), $question->getDefaultAnswer());
         }
