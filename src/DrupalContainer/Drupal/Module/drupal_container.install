@@ -8,5 +8,5 @@ function drupal_container_install() {
     drupal_install_schema('drupal_container');
 
     // New module weights in core: put container as the very first in the chain.
-    db_query("UPDATE {system} SET weight = -1 WHERE name = 'drupal_container'");
+    db_query("UPDATE {system} SET weight = -1 WHERE name = 'drupal_container' LIMIT 1");
 }

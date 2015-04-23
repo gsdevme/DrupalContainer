@@ -37,8 +37,8 @@ class DrupalRootDirectory implements ChoiceQuestionInterface
     public function getChoiceArray()
     {
         return [
-            'Yes' => 'Yes, install the Drupal module to this location',
-            'No'  => 'No, will prompt for the relative path'
+            'Yes' => 'Yes',
+            'No'  => 'No'
         ];
     }
 

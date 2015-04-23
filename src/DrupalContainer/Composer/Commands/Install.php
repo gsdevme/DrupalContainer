@@ -49,13 +49,29 @@ class Install extends Console\Command\Command
         $resolver = new DrupalWebDirectoryResolver();
         $folder   = $resolver->resolve(getcwd());
 
-        if ($folder !== null) {
-
-            $output->writeln(sprintf('<info>%s</info>', 'Found Drupal Install:'));
-            $output->writeln(sprintf('<error>%s</error>', $folder));
-
-            $question = $this->questionFactory->create($this->drupalRootDirectoryQuestion);
-            $helper->ask($input, $output, $question);
+        if ($folder === null) {
+            throw new \RuntimeException(__CLASS__ . ' can not find your drupal install path, please ensure its
+            reachable relative from the composer.json');
         }
+
+        $output->writeln(sprintf('<info>%s</info>', 'Found Drupal Install:'));
+        $output->writeln(sprintf('<error>%s</error>', $folder));
+
+        $question = $this->questionFactory->create($this->drupalRootDirectoryQuestion);
+        $answer   = $helper->ask($input, $output, $question);
+
+        if($answer === 'No'){
+            throw new \Exception('Failed to find the correct drupal path, you can run bin/drupal-container composer:install to retry');
+        }
+
+        // dirty
+        mkdir($folder . '/sites/all/modules/drupal_container/', 0775, true);
+        $module = __DIR__ . '/../../Drupal/Module/';
+
+        copy($module . 'drupal_container.info', $folder  . '/sites/all/modules/drupal_container/drupal_container.info');
+        copy($module . 'drupal_container.install', $folder  . '/sites/all/modules/drupal_container/drupal_container.install');
+        copy($module . 'drupal_container.module', $folder  . '/sites/all/modules/drupal_container/drupal_container.module');
+
+        $output->writeln(sprintf('<info>%s</info>', 'Module Installed'));
     }
 }
