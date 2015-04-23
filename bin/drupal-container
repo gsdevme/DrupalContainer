@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+$autoloader = '%s/vendor/autoload.php';
+
+if (file_exists(sprintf($autoloader, __DIR__))) {
+    require_once sprintf($autoloader, __DIR__);
+}
+
+if (file_exists(sprintf($autoloader, __DIR__ . '/..'))) {
+    require_once sprintf($autoloader, __DIR__ . '/..');
+}
+
+if (spl_autoload_functions() === false) {
+    $message = <<<MSG
+No composer autoloader has been found, install via:
+curl -s http://getcomposer.org/installer | php
+php composer.phar install
+
+MSG;
+
+    fwrite(STDERR, $message);
+    exit(1);
+}
+
+$app = new DrupalContainer\Composer\Application();
+$app->run();

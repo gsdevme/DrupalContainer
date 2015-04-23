@@ -5,17 +5,20 @@
  *
  * Implements hook_boot().
  */
-function drupal_container_boot() {
+function drupal_container_boot()
+{
     global $conf;
 
-    if(file_exists(DRUPAL_ROOT . '/vendor/autoload.php')){
+    if (file_exists(DRUPAL_ROOT . '/vendor/autoload.php')) {
         require_once DRUPAL_ROOT . '/vendor/autoload.php';
     }
 
-    if(file_exists(DRUPAL_ROOT . '/../vendor/autoload.php')){
+    if (file_exists(DRUPAL_ROOT . '/../vendor/autoload.php')) {
         require_once DRUPAL_ROOT . '/../vendor/autoload.php';
     }
 
     $application = new DrupalContainer\Application(DRUPAL_ROOT, $conf);
-    $application->run();
+    $application->boot();
+
+    \DrupalContainer\Registry::setContainer($application->getContainer());
 }
